@@ -1,28 +1,21 @@
 {
-  "team_id": "your-team-id",
+  "team_id": "WHITEMAN_1",
   "domain": "coding_assistants",
   "language_scope": ["en"],
   "african_alpha_claim": false,
   "budget_laptop_claim": true,
   "submitter": {
-    "name": "your-name",
-    "email": "your-email@domain.com",
-    "github_handle": "your-github"
+    "name": "HALLELUYAH_WHITEMAN",
+    "email": "hallwhiteman@gmail.com",
+    "github_handle": "WHITEMAN"
   },
   "cross_disciplinary_pairing": {
-    "discipline": "education",
-    "load_bearing": true,
-    "description": "Brief description of how your model serves a real-world domain."
+    "discipline": "software_engineering",
+    "load_bearing": true
   },
   "test_prompts": [
-    {
-      "prompt_id": "tp_001",
-      "prompt": "Write a Python function that reads a CSV file and returns the column with the highest mean value."
-    },
-    {
-      "prompt_id": "tp_002",
-      "prompt": "Explain the difference between a list and a tuple in Python, and give one example where each is the better choice."
-    }
+    "Write a localized Python function to calculate basic mobile money transaction fees given an amount.",
+    "Explain how to fix a 'Connection Timeout' error in a Flutter application running on an offline local server environment."
   ],
   "model": {
     "name": "SmolLM2-135M-Instruct-Q4_K_M",
@@ -31,7 +24,7 @@
     "parameters_estimate": "135M",
     "packaging": "binary_bundle"
   },
-  "_runtime": {
+  "runtime": {
     "model_path": "model/SmolLM2-135M-Instruct-Q4_K_M.gguf"
   }
 }
