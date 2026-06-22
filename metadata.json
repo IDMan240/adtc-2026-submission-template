@@ -11,11 +11,18 @@
   },
   "cross_disciplinary_pairing": {
     "discipline": "software_engineering",
-    "load_bearing": true
+    "load_bearing": true,
+    "description": "Building an interactive HTML/CSS/JS frontend application communicating locally with a resource-constrained offline model."
   },
   "test_prompts": [
-    "Write a localized Python function to calculate basic mobile money transaction fees given an amount.",
-    "Explain how to fix a 'Connection Timeout' error in a Flutter application running on an offline local server environment."
+    {
+      "prompt_id": "tp_001",
+      "prompt": "Write a localized Python function to calculate basic mobile money transaction fees given an amount."
+    },
+    {
+      "prompt_id": "tp_002",
+      "prompt": "Explain how to fix a 'Connection Timeout' error in a Flutter application running on an offline local server environment."
+    }
   ],
   "model": {
     "name": "SmolLM2-135M-Instruct-Q4_K_M",
@@ -24,7 +31,7 @@
     "parameters_estimate": "135M",
     "packaging": "binary_bundle"
   },
-  "runtime": {
+  "_runtime": {
     "model_path": "model/SmolLM2-135M-Instruct-Q4_K_M.gguf"
   }
 }
