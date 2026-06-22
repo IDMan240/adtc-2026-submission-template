@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevAI - Offline Coding Assistant</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121214; color: #e1e1e6; margin: 0; padding: 20px; display: flex; flex-direction: column; height: 90vh; }
+        header { border-bottom: 1px solid #29292e; padding-bottom: 10px; margin-bottom: 20px; }
+        #chat-window { flex: 1; background: #1c1c1f; border-radius: 8px; padding: 20px; overflow-y: auto; border: 1px solid #29292e; margin-bottom: 15px; white-space: pre-wrap; }
+        .input-area { display: flex; gap: 10px; }
+        textarea { flex: 1; background: #202024; border: 1px solid #29292e; border-radius: 6px; color: #fff; padding: 12px; resize: none; height: 50px; }
+        button { background: #04d361; color: #000; border: none; padding: 0 24px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #00b34d; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>⚡ WHITEMAN_1 Coding Assistant</h2>
+        <p style="color: #8d8d99; margin: 0;">Running completely offline via local SmolLM2</p>
+    </header>
+
+    <div id="chat-window">Welcome! Type a coding prompt or challenge below...</div>
+
+    <div class="input-area">
+        <textarea id="prompt-input" placeholder="Ask something (e.g., Explain how to fix a Flutter connection timeout...)"></textarea>
+        <button id="send-btn" onclick="sendPrompt()">Submit</button>
+    </div>
+
+    <script>
+        async function sendPrompt() {
+            const inputEl = document.getElementById('prompt-input');
+            const windowEl = document.getElementById('chat-window');
+            const prompt = inputEl.value.trim();
+            if(!prompt) return;
+
+            windowEl.innerHTML += `\n\n<b>👤 You:</b>\n${prompt}`;
+            inputEl.value = '';
+            windowEl.innerHTML += `\n\n<b>🤖 Assistant:</b>\nThinking...`;
+            windowEl.scrollTop = windowEl.scrollHeight;
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt })
+                });
+                const data = await res.json();
+                
+                // Remove the "Thinking..." marker and append the model output
+                windowEl.innerHTML = windowEl.innerHTML.replace('Thinking...', data.text);
+            } catch (err) {
+                windowEl.innerHTML = windowEl.innerHTML.replace('Thinking...', 'Error generating response.');
+            }
+            windowEl.scrollTop = windowEl.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+
