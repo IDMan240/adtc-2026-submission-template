@@ -1,0 +1,12 @@
+{
+  "name": "adtc-coding-assistant-web",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "node-llama-cpp": "^3.0.0-beta.1",
+    "express": "^4.19.2"
+  }
+}
